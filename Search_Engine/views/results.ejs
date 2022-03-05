@@ -1,0 +1,32 @@
+<%- include ('partials/header') %>
+<header class="bg-dark py-5">
+	<div class="container px-4 px-lg-5 my-5">
+		<div class="text-center text-white">
+			<h1 class="display-4 fw-bolder">Poor Man's Google</h1>
+		</div>
+	</div>
+	<form class="row mt-2" action="/results" method="GET">
+		<div class="col-md-1"></div>
+		<div class="col-md-9">
+			<input type="text" id="searchBar" name="title" class="form-control" placeholder="Search">
+		</div>
+		<div class="col-md-2">
+			<button class="btn btn-outline-light" type="submit">
+				<i class="bi bi-search"></i>
+				Search	
+			</button>
+		</div>
+	</form>
+</header>
+<div class="container">
+    <%- var temp = JSON.stringify(output) 
+    for (var i = 0; i < temp.length; i++) { %>
+    <div class="row">
+        <div class="col-md-12">
+            <%= temp[i] %>
+        </div>
+
+    </div>
+    <%- } %>
+</div>
+<%- include ('partials/footer') %>
