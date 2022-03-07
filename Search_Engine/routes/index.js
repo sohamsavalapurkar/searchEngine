@@ -8,8 +8,7 @@ router.get('/', function(req, res) {
 
 router.post('/results', function(req, res) {
   console.log(req.body.searchBar)
-  const python = spawn('python3', ['/Users/sohamsavalapurkar/Spring 22/OOAD/Search_engine/Search_Engine/python_file/search.py','./' + req.body.searchBar])
-  var output = []
+  const python = spawn('python3', ['/Users/sohamsavalapurkar/Spring 22/OOAD/Group_Project/searchEngine/Search_Engine/python_file/search.py','./' + req.body.searchBar])
   python.stdout.on('data', function (data) {
     console.log('Pipe data from python script ...');
     dataToSend = data.toString('UTF8');
@@ -19,9 +18,7 @@ router.post('/results', function(req, res) {
    python.on('close', (code) => {
    console.log(`child process close all stdio with code ${code}`);
    // send data to browser
-   output = dataToSend.split("\n")
-   console.log(output)     
-   res.render('results',{output: output});
+   res.render('results',{output: dataToSend, input: req.body.searchBar});
     })
     
 });
